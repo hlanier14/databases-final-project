@@ -20,12 +20,11 @@ echo "Connected successfully";
 
 <table border="1" align="center">
 <tr>
-  <td>city_id</td>
-  <td>location</td>
+  <td>company</td>
 </tr>
 
 <?php
-$title = clean($title, 30);
+$title = clean(readline('Enter a title: ', 30);
 $query = mysqli_query($conn, "Select company
                               From Salary
                               Where title = \"$title\"
