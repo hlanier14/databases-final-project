@@ -30,7 +30,7 @@ $dist_titles = mysqli_query($conn, "Select distinct title from Salary;")
 <form action="" method="get">
 <select id="title" name="title">
 	<?php
-	while ($row = mysqli_fetch_array($query)) {
+	while ($row = mysqli_fetch_array($dist_titles)) {
 	  echo "<option>{$row['title']}</option>";
 	}
 	?>
