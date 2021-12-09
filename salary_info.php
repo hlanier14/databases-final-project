@@ -25,9 +25,13 @@ echo "Connected successfully";
 </tr>
 
 <?php
-
-$query = mysqli_query($conn, "SELECT * FROM Location")
-   or die (mysqli_error($conn));
+$title = clean($title, 30);
+$query = mysqli_query($conn, "Select company
+                              From Salary
+                              Where title = \"$title\"
+                              And total_yearly_compensation = 
+                              (select max(total_yearly_compensation) from Salary where title = \"$title\");")
+or die (mysqli_error($conn));
 
 while ($row = mysqli_fetch_array($query)) {
   echo
