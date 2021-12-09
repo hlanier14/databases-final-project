@@ -22,9 +22,12 @@ echo "Connected successfully";
 <tr>
   <td>company</td>
 </tr>
+<form action="" method="get">
+<input type="text" name="title" id="title"></input>
+</form>
 
 <?php
-$title = clean(readline('Enter a title: ', 30));
+$title = htmlentities($_GET['title']);
 $query = mysqli_query($conn, "Select company
                               From Salary
                               Where title = \"$title\"
