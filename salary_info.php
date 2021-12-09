@@ -36,8 +36,7 @@ or die (mysqli_error($conn));
 while ($row = mysqli_fetch_array($query)) {
   echo
    "<tr>
-    <td>{$row['city_id']}</td>
-    <td>{$row['location']}</td>
+    <td>{$row['company']}</td>
    </tr>";
 }
 
