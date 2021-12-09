@@ -24,7 +24,7 @@ echo "Connected successfully";
 </tr>
 
 <?php
-$title = clean(readline('Enter a title: ', 30);
+$title = clean(readline('Enter a title: ', 30));
 $query = mysqli_query($conn, "Select company
                               From Salary
                               Where title = \"$title\"
