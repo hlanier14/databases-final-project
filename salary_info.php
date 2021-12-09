@@ -30,10 +30,14 @@ $dist_titles = mysqli_query($conn, "Select distinct title from Salary;")
 <form action="" method="get">
 <select id="title" name="title">
 	<?php
-	while ($row = mysqli_fetch_array($dist_titles)) {
-	  echo "<option>{$row['title']}</option>";
-	}
-	?>
+	    while($row_list = mysql_fetch_assoc($dist_titles)){  
+	?>  
+	    <option value="<? echo $row_list['title']; ?>"<? if($row_list['title']==$select){ echo "selected"; } ?>>  
+				 <?echo $row_list['title'];?>  
+	    </option>  
+	<?  
+	}  
+	?>  
 </select>
 <input type="submit" value="Submit" name="company_max_salary_title" id="company_max_salary_title">
 </form>
