@@ -28,14 +28,14 @@ $dist_titles = mysqli_query($conn, "Select distinct title from Salary;")
 <p>Find out which company has the highest salary for the title: </p>
 
 <form action="" method="get">
-<select id="company_max_salary_title" name="company_max_salary_title">
+<select id="title" name="title">
 	<?php
 	while ($row = mysqli_fetch_array($query)) {
 	  echo "<option>{$row['title']}</option>";
 	}
 	?>
 </select>
-<input type="submit" value="Submit">
+<input type="submit" value="Submit" name="company_max_salary_title" id="company_max_salary_title">
 </form>
 <!-- use user input title in query and output result -->
 <?php
