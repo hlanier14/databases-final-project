@@ -15,16 +15,27 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 echo "Connected successfully";
+	
+// Get distinct table of titles in Salary table
+$dist_titles = mysqli_query($conn, "Select distinct title from Salary;")
 ?>
 
 
 
 
 <!-- get user input title to find company with highest salary -->
-<br>>
+<br>
 <p>Find out which company has the highest salary for the title: </p>
+
 <form action="" method="get">
-	<input type="text" name="company_max_salary_title" id="company_max_salary_title"></input>
+<select id="company_max_salary_title" name="company_max_salary_title">
+	<?php
+	while ($row = mysqli_fetch_array($query)) {
+	  echo "<option>{$row['title']}</option>";
+	}
+	?>
+</select>
+<input type="submit" value="Submit">
 </form>
 <!-- use user input title in query and output result -->
 <?php
@@ -34,7 +45,7 @@ $query = mysqli_query($conn, "Select company
                               Where title = \"$company_max_salary_title\"
                               And total_yearly_compensation = 
                               (select max(total_yearly_compensation) from Salary where title = \"$company_max_salary_title\");")
-or die (mysqli_error($conn));
+			      or die (mysqli_error($conn));
 // Output row of query, should only be one row for this question
 while ($row = mysqli_fetch_array($query)) {
   echo "<p>{$row['company']}</p>";
