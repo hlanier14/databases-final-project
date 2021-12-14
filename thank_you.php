@@ -1,7 +1,25 @@
 <html>
 <body>
 
- <!-- php to submit values into database -->
+
+<!-- connect to database -->
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "DBFall2021*";
+$db = "salary";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
+<br>
+
+
+<!-- php to submit values into database -->
 <?php
 // id
 $prev_query = mysqli_query($conn, "Select count(*) as count from Salary LIMIT 1;") or die (mysqli_error($conn));
@@ -42,6 +60,10 @@ $update_db = mysqli_query($conn, "INSERT INTO Salary
 
 echo "<p>Thank you for your submission!</p>";
 ?>
-  
+
+<form action="salary_info.php">
+<input type="submit" value="Return to salary info page"/>
+</form>
+
 </html>
 </body>
