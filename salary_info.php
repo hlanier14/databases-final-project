@@ -76,6 +76,8 @@ while ($row = mysqli_fetch_array($sal_query)) {
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='company_min_salary_title' onchange='this.form.submit()'>";
+// set default select to Select
+echo "<option selected='selected' value='select'>Select</option>";
 while ($row = mysqli_fetch_array($title_query)) {
    echo "<option value='" . $row['title'] . "'>" . $row['title'] . "</option>";
 }
@@ -108,6 +110,8 @@ while ($row = mysqli_fetch_array($sal_query)) {
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='avg_entry_salary_title' onchange='this.form.submit()'>";
+// set default select to Select
+echo "<option selected='selected' value='select'>Select</option>";
 while ($row = mysqli_fetch_array($title_query)) {
    echo "<option value='" . $row['title'] . "'>" . $row['title'] . "</option>";
 }
@@ -139,6 +143,8 @@ while ($row = mysqli_fetch_array($entry_query)) {
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='ed_title' onchange='this.form.submit()'>";
+// set default select to Select
+echo "<option selected='selected' value='select'>Select</option>";
 while ($row = mysqli_fetch_array($title_query)) {
    echo "<option value='" . $row['title'] . "'>" . $row['title'] . "</option>";
 }
@@ -176,6 +182,8 @@ echo "</table>";
 $company_query = mysqli_query($conn, "Select distinct company from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='m_vs_nm_company' onchange='this.form.submit()'>";
+// set default select to Select
+echo "<option selected='selected' value='select'>Select</option>";
 while ($row = mysqli_fetch_array($company_query)) {
    echo "<option value='" . $row['company'] . "'>" . $row['company'] . "</option>";
 }
