@@ -127,7 +127,6 @@ $entry_lvl_query = mysqli_query($conn, "Select round(avg(total_yearly_compensati
 			      And years_of_experience = 0
 			      LIMIT 1;")
 or die (mysqli_error($conn));
-echo "{mysqli_fetch_array($entry_lvl_query)}";
 while ($row = mysqli_fetch_array($entry_lvl_query)) {
    echo "<p>An entry level {$avg_entry_salary_title} employee makes on average $ {$row['avg']}</p>";
 }
