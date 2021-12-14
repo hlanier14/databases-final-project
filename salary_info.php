@@ -262,6 +262,27 @@ while($row = mysqli_fetch_array($count_query)) {
 echo "</table>";
 ?>
 
+	
+	
+<!-- find how much Amazon pays for difference experience levels -->
+<br>
+<p>What is the average salary for Amazon employees with different experience levels?</p>
+<?php
+$count_query = mysqli_query($conn, "SELECT years_of_experience, avg(total_yearly_compensation) as avg FROM Salary
+				    WHERE company = "Amazon" GROUP BY company, years_of_experience 
+				    ORDER BY years_of_experience;") or die (mysqli_error($conn));
+echo "<table> <tr> <th>Yrs of Exp</th> <th>Avg Salary</th> </tr>";
+while($row = mysqli_fetch_array($count_query)) {
+   if(in_array($row['years_of_experience'], array(0, 3, 5, 10, 15)) {
+      echo "<tr> <td>{$row['years_of_experience']}</td> <td>{$row['avg']}</td> </tr>";
+   }
+}
+echo "</table>";
+?>
+	
+	
+	
+	
 
 
 <!-- find the city with the highest average salary -->
