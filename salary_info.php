@@ -16,9 +16,9 @@ if ($conn->connect_error) {
 }
 echo "Connected successfully";
 ?>
-
-
-
+<br>
+	
+<h1>User Input Questions</h1>
 
 <!-- get user input title to find company with highest salary -->
 <br>
@@ -213,7 +213,7 @@ echo "</table>";
 
 
 
-
+<h1>Static Questions</h1>
 
 
 <!-- find company with the most bonus compensation -->
