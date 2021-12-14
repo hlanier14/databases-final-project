@@ -37,7 +37,7 @@ echo "Connected successfully";
 <!-- Need company, location, title, total_yearly_compensation, years_of_experience, years_at_company, stock_grant_value, bonus, highest lvl of education -->
 <!-- Assign id of # rows + 1, datetime of submited time, city_id of associated location, bachelors masters and doctorate from highest lvl of education -->
 
-<form action="" method="POST">
+<form action="thank_you.php" method="POST">
 <p><label for="company"> Company: </label> <input type="text" id="company" name="company"><br></p>
 <p><label for="city">City: </label>
 <?php
@@ -72,6 +72,7 @@ echo "</select>";
 
 <!-- php to submit values into database -->
 <?php
+	/*
 // id
 $prev_query = mysqli_query($conn, "Select count(*) as count from Salary LIMIT 1;") or die (mysqli_error($conn));
 $prev_id = mysqli_fetch_array($prev_query);
@@ -110,6 +111,7 @@ $update_db = mysqli_query($conn, "INSERT INTO Salary
 				  VALUES (\"{$new_id}\", \"{$datetime}\", \"{$company}\", \"{$city_id['city_id']}\", \"{$title}\", \"{$total_yearly_compensation}\", \"{$years_of_experience}\", \"{$years_at_company}\", \"{$stock_grant_value}\", \"{$bonus}\", \"{$masters}\", \"{$bachelors}\", \"{$doctorate}\");") or die (mysqli_error($conn));
 
 echo "<p>Thank you for your submission!</p>";
+*/
 ?>
 
 </body>
