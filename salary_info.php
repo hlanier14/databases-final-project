@@ -211,9 +211,9 @@ while($row = mysqli_fetch_array($exp_query)) {
 echo "</table>";
 ?>
 	
-	
 <br>
-<hr size="5" width="90%" color="black">
+<br>
+<hr size="3" width="90%" color="black">
 <br>
 <h1>Static Questions</h1>
 
@@ -365,9 +365,9 @@ echo "</table>";
 
 
 
-
 <br>
-<hr size="5" width="90%" color="black">
+<br>
+<hr size="3" width="90%" color="black">
 <br>
 <h2> Input your own information into the database!</h2>
 <!-- user input own salary into Salary table -->
