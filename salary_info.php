@@ -26,8 +26,13 @@ if ($conn->connect_error) {
 echo "Connected successfully";
 ?>
 <br>
-	
+
+
+
 <center> <h1>User Input Questions</h1> </center>
+
+
+
 
 <!-- get user input title to find company with highest salary -->
 <br>
@@ -37,6 +42,8 @@ echo "Connected successfully";
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='company_max_salary_title' onchange='this.form.submit()'>";
+// set default select to Select
+echo "<option selected='selected' value='select'>Select</option>";
 while ($row = mysqli_fetch_array($title_query)) {
    echo "<option value='" . $row['title'] . "'>" . $row['title'] . "</option>";
 }
