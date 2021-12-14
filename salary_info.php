@@ -2,6 +2,13 @@
 <html>
 <body>
 
+<head>	
+<style>
+	td {text-align: center;}
+</style>
+</head>
+	
+	
 <!-- connect to database -->
 <?php
 $servername = "localhost";
@@ -18,7 +25,7 @@ echo "Connected successfully";
 ?>
 <br>
 	
-<h1>User Input Questions</h1>
+<center> <h1>User Input Questions</h1> </center>
 
 <!-- get user input title to find company with highest salary -->
 <br>
@@ -215,7 +222,7 @@ echo "</table>";
 <br>
 <hr size="3" width="90%" color="black">
 <br>
-<h1>Static Questions</h1>
+<center><h1>Static Questions</h1></center>
 
 
 <!-- find company with the most bonus compensation -->
@@ -369,7 +376,7 @@ echo "</table>";
 <br>
 <hr size="3" width="90%" color="black">
 <br>
-<h2> Input your own information into the database!</h2>
+<center><h2> Input your own information into the database!</h2></center>
 <!-- user input own salary into Salary table -->
 <!-- Need company, location, title, total_yearly_compensation, years_of_experience, years_at_company, stock_grant_value, bonus, highest lvl of education -->
 <!-- Assign id of # rows + 1, datetime of submited time, city_id of associated location, bachelors masters and doctorate from highest lvl of education -->
