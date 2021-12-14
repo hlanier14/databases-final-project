@@ -404,22 +404,13 @@ echo "</table>";
 <br>
 <hr size="3" width="90%" color="black">
 <br>
-<center><h2> Input your own information into the database!</h2></center>
+<center><h2> Input your own information into the database!</h2>
+<form action="input_salary.php">
+<input type="submit" value="Go to salary input page"/>
+</form>
+</center>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-</table>
 </body>
 </html>
 

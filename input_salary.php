@@ -1,6 +1,36 @@
 <html>
 <body> 
 
+
+<head>
+<style>
+	form  {display: table;}
+	p     {display: table-row;}
+	label {display: table-cell; padding: 10px;}
+	input {display: table-cell;}
+</head>
+</style>
+
+
+
+
+<!-- connect to database -->
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "DBFall2021*";
+$db = "salary";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $db);
+// Check connection
+if ($conn->connect_error) {
+   die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+?>
+<br>
+
+
 <h2> Input your own information into the database!</h2>
 
 <!-- user input own salary into Salary table -->
