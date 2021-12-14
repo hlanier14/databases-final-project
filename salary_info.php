@@ -2,6 +2,7 @@
 <html>
 <body>
 
+<!-- css formatting -->
 <head>	
 <style>
 	td {text-align: center;}
@@ -36,13 +37,12 @@ echo "Connected successfully";
 <center> <h1>User Input Questions</h1> </center>
 
 
-
-
 <!-- get user input title to find company with highest salary -->
 <br>
 <h2>Find out which company has the highest salary for the title: </h2>
 <!-- use user input title in query and output result -->
 <?php
+// query all titles for selection drop down
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='company_max_salary_title' onchange='this.form.submit()'>";
@@ -55,6 +55,7 @@ echo "</select>";
 echo "</form>";
 ?>
 <?php
+// use selected title in query
 $company_max_salary_title = htmlentities($_POST['company_max_salary_title']);
 $max_sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
                                  From Salary
@@ -77,6 +78,7 @@ while ($row = mysqli_fetch_array($max_sal_query)) {
 <h2>Find out which company has the lowest salary for the title: </h2>
 <!-- use user input title in query and output result -->
 <?php
+// use all titles in drop down selection
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='company_min_salary_title' onchange='this.form.submit()'>";
@@ -89,6 +91,7 @@ echo "</select>";
 echo "</form>";
 ?>
 <?php
+// use selected title in query
 $company_min_salary_title = htmlentities($_POST['company_min_salary_title']);
 $min_sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
 	                          From Salary
@@ -111,6 +114,7 @@ while ($row = mysqli_fetch_array($min_sal_query)) {
 <h2>Find out the average entry level salary for the title:</h2>
 <!-- use user input title in query and output result -->
 <?php
+// use all titles in selection drop down
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='avg_entry_salary_title' onchange='this.form.submit()'>";
@@ -124,6 +128,7 @@ echo "</form>";
 ?>
 <!-- use user input title for query -->
 <?php
+// use selected title in query
 $avg_entry_salary_title = htmlentities($_POST['avg_entry_salary_title']);
 $entry_lvl_query = mysqli_query($conn, "Select round(avg(total_yearly_compensation)) as avg
 		   	      From Salary
@@ -145,6 +150,7 @@ while ($row = mysqli_fetch_array($entry_lvl_query)) {
 <h2>Find out the percentage of employees have a bachelors, masters and doctorate for:</h2>
 <!-- use user input title in query and output result -->
 <?php
+// use all titles in selection drop down
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='ed_title' onchange='this.form.submit()'>";
@@ -158,6 +164,7 @@ echo "</form>";
 ?>
 <!-- use user input title for query -->
 <?php
+// use selected title in query
 $ed_title = htmlentities($_POST['ed_title']);
 $ed_query = mysqli_query($conn, "SELECT X.*
 				FROM
@@ -184,6 +191,7 @@ echo "</table>";
 <h2>Find out the average manager and non-manager salaries at company:</h2>
 <!-- use user input title in query and output result -->
 <?php
+// query all companies in database for drop down selection
 $company_query = mysqli_query($conn, "Select distinct company from Salary;") or die (mysqli_error($conn));
 echo "<form action='' method='POST'>";
 echo "<select name='m_vs_nm_company' onchange='this.form.submit()'>";
@@ -197,6 +205,7 @@ echo "</form>";
 ?>
 <!-- use user input title for query -->
 <?php
+// use selected company in query
 $m_vs_nm_company = htmlentities($_POST['m_vs_nm_company']);
 $m_vs_nm_query = mysqli_query($conn, "select 'manager' as titlestr, round(avg(total_yearly_compensation)) as avg from Salary
 	where title like '%manager%'
@@ -220,11 +229,13 @@ echo "</table>";
 <!-- find the average compensation at each company for a given amount of work experience -->
 <br>
 <h2>Which companies pay the highest compensation for an employee with ___ years of work experience?</h2>
+<!-- user submits a number of years of experience to be used in the query -->
 <form action='' method='POST'>
 <input type="number" name="experience_yrs">
 <input type="submit">
 </form>
 <?php
+// use inputted years of experiene in query
 $exp_yrs = htmlentities($_POST['experience_yrs']);
 $exp_query = mysqli_query($conn, "Select *, round(avg(total_yearly_compensation)) as Average
 				  From Salary 
@@ -404,6 +415,7 @@ echo "</table>";
 <br>
 <hr size="3" width="90%" color="black">
 <br>
+<!-- link to input salary page -->
 <center><h2> Input your own information into the database!</h2>
 <form action="input_salary.php">
 <input type="submit" value="Go to salary input page"/>
