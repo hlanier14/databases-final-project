@@ -22,7 +22,7 @@ echo "Connected successfully";
 
 <!-- get user input title to find company with highest salary -->
 <br>
-<b><h4>Find out which company has the highest salary for the title: </h4></b>
+<h2>Find out which company has the highest salary for the title: </h2>
 <!-- use user input title in query and output result -->
 <?php
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
@@ -34,7 +34,6 @@ while ($row = mysqli_fetch_array($title_query)) {
 echo "</select>";
 echo "</form>";
 ?>
-
 <?php
 $company_max_salary_title = htmlentities($_POST['company_max_salary_title']);
 $sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
@@ -55,7 +54,7 @@ while ($row = mysqli_fetch_array($sal_query)) {
 
 <!-- get user input title to find company with lowest salary -->
 <br>
-<p>Find out which company has the lowest salary for the title: </p>
+<h2>Find out which company has the lowest salary for the title: </h2>
 <!-- use user input title in query and output result -->
 <?php
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
@@ -67,7 +66,6 @@ while ($row = mysqli_fetch_array($title_query)) {
 echo "</select>";
 echo "</form>";
 ?>
-
 <?php
 $company_min_salary_title = htmlentities($_POST['company_min_salary_title']);
 $sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
@@ -88,7 +86,7 @@ while ($row = mysqli_fetch_array($sal_query)) {
 
 <!-- get user input title to find the average entry level salary -->
 <br>
-<p>Find out the average entry level salary for the title:</p>
+<h2>Find out the average entry level salary for the title:</h2>
 <!-- use user input title in query and output result -->
 <?php
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
@@ -119,7 +117,7 @@ while ($row = mysqli_fetch_array($entry_query)) {
 
 <!-- get user input title to find the education levels for a given title -->
 <br>
-<p>Find out the percentage of employees have a bachelors, masters and doctorate for:</p>
+<h2>Find out the percentage of employees have a bachelors, masters and doctorate for:</h2>
 <!-- use user input title in query and output result -->
 <?php
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
@@ -156,7 +154,7 @@ echo "</table>";
 
 <!-- find average salaries for managers and non-managers at given company -->
 <br>
-<p>Find out the average manager and non-manager salaries at company:</p>
+<h2>Find out the average manager and non-manager salaries at company:</h2>
 <!-- use user input title in query and output result -->
 <?php
 $company_query = mysqli_query($conn, "Select distinct company from Salary;") or die (mysqli_error($conn));
@@ -192,7 +190,7 @@ echo "</table>";
 
 <!-- find the average compensation at each company for a given amount of work experience -->
 <br>
-<p>Which companies pay the highest compensation for an employee with ___ years of work experience?</p>
+<h2>Which companies pay the highest compensation for an employee with ___ years of work experience?</h2>
 <form action='' method='POST'>
 <input type="number" name="experience_yrs">
 <input type="submit">
@@ -220,7 +218,7 @@ echo "</table>";
 
 <!-- find company with the most bonus compensation -->
 <br>
-<p>Which company pays the highest bonus compensation?</p>
+<h2>Which company pays the highest bonus compensation?</h2>
 <?php
 $bonus_query = mysqli_query($conn, "Select * From Salary where bonus = (Select max(bonus) from Salary);") or die (mysqli_error($conn));
 while($row = mysqli_fetch_array($bonus_query)) {
@@ -233,7 +231,7 @@ while($row = mysqli_fetch_array($bonus_query)) {
 
 <!-- find company with the most stock grants -->
 <br>
-<p>Which company pays the highest in stock grants?</p>
+<h2>Which company pays the highest in stock grants?</h2>
 <?php
 $stock_query = mysqli_query($conn, "Select * From Salary where stock_grant_value = (Select max(stock_grant_value) from Salary);") or die (mysqli_error($conn));
 while($row = mysqli_fetch_array($stock_query)) {
@@ -245,7 +243,7 @@ while($row = mysqli_fetch_array($stock_query)) {
 
 <!-- find the cities with the most entries in dataset -->
 <br>
-<p>Which cities have the most entries in the dataset?</p>
+<h2>Which cities have the most entries in the dataset?</h2>
 <?php
 $count_query = mysqli_query($conn, "SELECT * 
 			       	FROM 
@@ -266,7 +264,7 @@ echo "</table>";
 	
 <!-- find how much Amazon pays for difference experience levels -->
 <br>
-<p>What is the average salary for Amazon employees with different experience levels?</p>
+<h2>What is the average salary for Amazon employees with different experience levels?</h2>
 <?php
 $amz_query = mysqli_query($conn, "SELECT years_of_experience, round(avg(total_yearly_compensation)) as avg FROM Salary
 				    WHERE company = 'Amazon' GROUP BY company, years_of_experience 
@@ -285,7 +283,7 @@ echo "</table>";
 
 <!-- find when employees typically get bonuses -->
 <br>
-<p>When do employees at a company typically get bonuses?</p>
+<h2>When do employees at a company typically get bonuses?</h2>
 <?php
 $most_bonus_query = mysqli_query($conn, "SELECT years_at_company, count(bonus) AS number_bonuses FROM Salary
 					WHERE bonus > 0 GROUP BY years_at_company ORDER BY number_bonuses
@@ -302,7 +300,7 @@ echo "</table>";
 
 <!-- find the city with the highest average salary -->
 <br>
-<p>Which city has the highest average salary?</p>
+<h2>Which city has the highest average salary?</h2>
 <?php
 $city_max_salary_query = mysqli_query($conn, "Select *, round(avg(total_yearly_compensation)) as Average
 	From Salary as s
@@ -319,7 +317,7 @@ while($row = mysqli_fetch_array($city_max_salary_query)) {
 
 <!-- find companies that keep their employees the longest -->
 <br>
-<p>Which company keeps their employees the longest?</p>
+<h2>Which company keeps their employees the longest?</h2>
 <?php
 $yrs_at_company_query = mysqli_query($conn, "SELECT *, round(AVG(years_at_company),2) as avg_yrs FROM Salary
 					     GROUP BY company ORDER BY avg_yrs DESC LIMIT 3;") or die (mysqli_error($conn));
@@ -334,7 +332,7 @@ echo "</table>";
 
 <!-- find companies that have the most inexperienced employees -->
 <br>
-<p>Which company has the most inexperienced employees?</p>
+<h2>Which company has the most inexperienced employees?</h2>
 <?php
 $inexperience_query = mysqli_query($conn, "SELECT *, round(AVG(years_of_experience),2) as avg_exp FROM Salary
 				       	GROUP BY company ORDER BY avg_exp LIMIT 1;") or die (mysqli_error($conn));
@@ -349,7 +347,7 @@ while($row = mysqli_fetch_array($inexperience_query)) {
 
 <!-- find companies with highest ratio of managers -->
 <br>
-<p>Which companies have the highest percentage of employees that are managers?</p>
+<h2>Which companies have the highest percentage of employees that are managers?</h2>
 <?php
 $manager_ratio_query = mysqli_query($conn, "SELECT emps.company, round(managers/employees*100,2) as percent_managers
 	FROM (Select company, count(title) as employees from Salary GROUP BY company)  emps
@@ -368,7 +366,7 @@ echo "</table>";
 
 <br>
 <br>
-<p> Input your own information into the database!</p>
+<h2> Input your own information into the database!</h2>
 <!-- user input own salary into Salary table -->
 <!-- Need company, location, title, total_yearly_compensation, years_of_experience, years_at_company, stock_grant_value, bonus, highest lvl of education -->
 <!-- Assign id of # rows + 1, datetime of submited time, city_id of associated location, bachelors masters and doctorate from highest lvl of education -->
