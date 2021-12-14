@@ -121,13 +121,14 @@ echo "</form>";
 <!-- use user input title for query -->
 <?php
 $avg_entry_salary_title = htmlentities($_POST['avg_entry_salary_title']);
-$sal_query = mysqli_query($conn, "Select round(avg(total_yearly_compensation)) as avg
+$entry_lvl_query = mysqli_query($conn, "Select round(avg(total_yearly_compensation)) as avg
 		   	      From Salary
 			      Where title = \"$avg_entry_salary_title\"
 			      And years_of_experience = 0
 			      LIMIT 1;")
 or die (mysqli_error($conn));
-while ($row = mysqli_fetch_array($sal_query)) {
+echo "{$entry_lvl_query}";
+while ($row = mysqli_fetch_array($entry_lvl_query)) {
    echo "<p>An entry level {$avg_entry_salary_title} employee makes on average $ {$row['avg']}</p>";
 }
 ?>
