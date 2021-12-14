@@ -268,19 +268,34 @@ echo "</table>";
 <br>
 <p>What is the average salary for Amazon employees with different experience levels?</p>
 <?php
-$count_query = mysqli_query($conn, "SELECT years_of_experience, avg(total_yearly_compensation) as avg FROM Salary
-				    WHERE company = "Amazon" GROUP BY company, years_of_experience 
+$amz_query = mysqli_query($conn, "SELECT years_of_experience, round(avg(total_yearly_compensation)) as avg FROM Salary
+				    WHERE company = 'Amazon' GROUP BY company, years_of_experience 
 				    ORDER BY years_of_experience;") or die (mysqli_error($conn));
 echo "<table> <tr> <th>Yrs of Exp</th> <th>Avg Salary</th> </tr>";
-while($row = mysqli_fetch_array($count_query)) {
-   if(in_array($row['years_of_experience'], array(0, 3, 5, 10, 15)) {
+$target = array(0, 3, 5, 10, 15);
+while($row = mysqli_fetch_array($amz_query)) {
+   if(in_array($row['years_of_experience'], $target)) {
       echo "<tr> <td>{$row['years_of_experience']}</td> <td>{$row['avg']}</td> </tr>";
    }
 }
 echo "</table>";
 ?>
 	
-	
+
+
+<!-- find when employees typically get bonuses -->
+<br>
+<p>When do employees at a company typically get bonuses?</p>
+<?php
+$most_bonus_query = mysqli_query($conn, "SELECT years_at_company, count(bonus) AS number_bonuses FROM Salary
+					WHERE bonus > 0 GROUP BY years_at_company ORDER BY number_bonuses
+					DESC LIMIT 3;") or die (mysqli_error($conn));
+echo "<table> <tr> <th>Yrs at Company</th> <th># Employees with Bonuses</th> </tr>";
+while($row = mysqli_fetch_array($most_bonus_query)) {
+   echo "<tr> <td>{$row['years_at_company']}</td> <td>{$row['number_bonuses']}</td> </tr>";
+}
+echo "</table>";
+?>
 	
 	
 
