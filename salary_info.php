@@ -44,7 +44,7 @@ echo "Connected successfully";
 <!-- use user input title in query and output result -->
 <?php
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
-echo "<form action='?action=max_salary_q' method='POST'>";
+echo "<form action='' method='POST'>";
 echo "<select name='company_max_salary_title' onchange='this.form.submit()'>";
 // set default select to Select
 echo "<option selected='selected' value='select'>Select</option>";
@@ -55,7 +55,6 @@ echo "</select>";
 echo "</form>";
 ?>
 <?php
-function max_salary_q() {
 $company_max_salary_title = htmlentities($_POST['company_max_salary_title']);
 $max_sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
                                  From Salary
@@ -67,7 +66,6 @@ $max_sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
 // Output row of query, should only be one row for this question
 while ($row = mysqli_fetch_array($max_sal_query)) {
   echo "<p>{$row['company']} pays a {$company_max_salary_title} employee a total compensation of $ {$row['total_yearly_compensation']}</p>";
-}
 }
 ?>
 
