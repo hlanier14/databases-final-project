@@ -7,10 +7,10 @@
 	td {text-align: center;}
 	tr:nth-child(even) {background-color: #D3D3D3}
 	table, th, td {padding: 10px; border: 1px solid black; border-collapse: collapse;}
-	form  { display: table;      }
-	p     { display: table-row;  }
-	label { display: table-cell; }
-	input { display: table-cell; }
+	form  {display: table;}
+	p     {display: table-row;}
+	label {display: table-cell; padding: 10px;}
+	input {display: table-cell;}
 </style>
 </head>
 	
@@ -422,13 +422,12 @@ while ($row = mysqli_fetch_array($city_query)) {
 echo "</select>";
 ?>
 </p>
-<br>
 <p><label for="title">Title: </label> <input type="text" id="title" name="title"><br></p>
 <p><label for="total_yearly_compensation">Total Yearly Compensation: </label><input type="number" id="total_yearly_compensation" name="total_yearly_compensation"><br></p>
-<p><label for="years_of_experience">Years of Experience: </label><input type="number" id="years_of_experience" name="years_of_experience"><br></p>
-<p><label for="years_at_company">Years at Company: </label><input type="number" id="years_at_company" name="years_at_company"><br></p>
 <p><label for="stock_grant_value">Stock Grant: </label><input type="number" id="stock_grant_value" name="stock_grant_value"><br></p>
 <p><label for="bonus">Bonus: </label><input type="number" id="bonus" name="bonus"><br></p>
+<p><label for="years_of_experience">Years of Experience: </label><input type="number" id="years_of_experience" name="years_of_experience"><br></p>
+<p><label for="years_at_company">Years at Company: </label><input type="number" id="years_at_company" name="years_at_company"><br></p>
 <p><label for="education"> Highest Level of Education: </label><select name="education" id="education">
 	<option selected='selected' value='select'>Select</option>
 	<option value="high_school">High School</option>
@@ -436,8 +435,8 @@ echo "</select>";
 	<option value="masters">Masters</option>
 	<option value="doctorate">Doctorate</option>
 	</select>
-<br>
 </p>
+<br>
 <input type="submit" value="submit"/>
 </form>
 <!-- php to submit values into database -->
@@ -475,7 +474,7 @@ $doctorate = 0;
 
 if($degree == "bachelors"){$bachelors=1; $masters=0; $doctorate=0;}
 elseif($degree == "masters"){$bachelors=1; $masters=1; $doctorate=0;}
-else{$bachelors=1; $masters=1; $doctorate=1;}
+elseif($degree == "doctorate"){$bachelors=1; $masters=1; $doctorate=1;}
 
 $update_db = mysqli_query($conn, "INSERT INTO Salary
 				  VALUES (\"{$new_id}\", \"{$datetime}\", \"{$company}\", \"{$city_id['city_id']}\", \"{$title}\", \"{$total_yearly_compensation}\", \"{$years_of_experience}\", \"{$years_at_company}\", \"{$stock_grant_value}\", \"{$bonus}\", \"{$masters}\", \"{$bachelors}\", \"{$doctorate}\");") or die (mysqli_error($conn));
