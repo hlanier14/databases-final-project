@@ -7,6 +7,10 @@
 	td {text-align: center;}
 	tr:nth-child(even) {background-color: #D3D3D3}
 	table, th, td {padding: 10px; border: 1px solid black; border-collapse: collapse;}
+	form  { display: table;      }
+	p     { display: table-row;  }
+	label { display: table-cell; }
+	input { display: table-cell; }
 </style>
 </head>
 	
@@ -405,11 +409,11 @@ echo "</table>";
 <!-- Need company, location, title, total_yearly_compensation, years_of_experience, years_at_company, stock_grant_value, bonus, highest lvl of education -->
 <!-- Assign id of # rows + 1, datetime of submited time, city_id of associated location, bachelors masters and doctorate from highest lvl of education -->
 <form action="" method="POST">
-Company: <input type="text" name="company"><br>
-City: 
+<p><label for="company"> Company: </label> <input type="text" id="company" name="company"><br></p>
+<p><label for="city">City: </label>
 <?php
 $city_query = mysqli_query($conn, "Select distinct location from Location;") or die (mysqli_error($conn));
-echo "<select name='city'>";
+echo "<select id='city' name='city'>";
 // set default select to Select
 echo "<option selected='selected' value='select'>Select</option>";
 while ($row = mysqli_fetch_array($city_query)) {
@@ -417,15 +421,15 @@ while ($row = mysqli_fetch_array($city_query)) {
 }
 echo "</select>";
 ?>
-
+</p>
 <br>
-Title: <input type="text" name="title"><br>
-Total Yearly Compensation: <input type="number" name="total_yearly_compensation"><br>
-Years of Experience: <input type="number" name="years_of_experience"><br>
-Years at Company: <input type="number" name="years_at_company"><br>
-Stock Grant: <input type="number" name="stock_grant_value"><br>
-Bonus: <input type="number" name="bonus"><br>
-Highest Level of Education: <select name="education" id="education">
+<p><label for="title">Title: </label> <input type="text" id="title" name="title"><br></p>
+<p><label for="total_yearly_compensation">Total Yearly Compensation: </label><input type="number" id="total_yearly_compensation" name="total_yearly_compensation"><br></p>
+<p><label for="years_of_experience">Years of Experience: </label><input type="number" id="years_of_experience" name="years_of_experience"><br></p>
+<p><label for="years_at_company">Years at Company: </label><input type="number" id="years_at_company" name="years_at_company"><br></p>
+<p><label for="stock_grant_value">Stock Grant: </label><input type="number" id="stock_grant_value" name="stock_grant_value"><br></p>
+<p><label for="bonus">Bonus: </label><input type="number" id="bonus" name="bonus"><br></p>
+<p><label for="education"> Highest Level of Education: </label><select name="education" id="education">
 	<option selected='selected' value='select'>Select</option>
 	<option value="high_school">High School</option>
 	<option value="bachelors">Bachelors</option>
@@ -433,6 +437,7 @@ Highest Level of Education: <select name="education" id="education">
 	<option value="doctorate">Doctorate</option>
 	</select>
 <br>
+</p>
 <input type="submit" value="submit"/>
 </form>
 <!-- php to submit values into database -->
