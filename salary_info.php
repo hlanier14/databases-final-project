@@ -44,7 +44,7 @@ echo "Connected successfully";
 <!-- use user input title in query and output result -->
 <?php
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
-echo "<form action='max_salary_q()' method='POST'>";
+echo "<form action='?action=max_salary_q' method='POST'>";
 echo "<select name='company_max_salary_title' onchange='this.form.submit()'>";
 // set default select to Select
 echo "<option selected='selected' value='select'>Select</option>";
