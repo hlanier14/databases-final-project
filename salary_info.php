@@ -22,7 +22,7 @@ echo "Connected successfully";
 
 <!-- get user input title to find company with highest salary -->
 <br>
-<p>Find out which company has the highest salary for the title: </p>
+<b><h4>Find out which company has the highest salary for the title: </h4></b>
 <!-- use user input title in query and output result -->
 <?php
 $title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
