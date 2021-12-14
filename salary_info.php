@@ -66,7 +66,37 @@ while ($row = mysqli_fetch_array($sal_query)) {
 ?>
 
 
-
+<!-- get user input title to find the average entry level salary -->
+<br>
+<h2>Find out the average entry level salary for the title:</h2>
+<!-- use user input title in query and output result -->
+<?php
+$title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
+echo "<form action='' method='POST'>";
+echo "<select name='avg_entry_salary_title' onchange='this.form.submit()'>";
+// set default select to Select
+echo "<option selected='selected' value='select'>Select</option>";
+while ($row = mysqli_fetch_array($title_query)) {
+   echo "<option value='" . $row['title'] . "'>" . $row['title'] . "</option>";
+}
+echo "</select>";
+echo "</form>";
+?>
+<!-- use user input title for query -->
+<?php
+$avg_entry_salary_title = htmlentities($_POST['avg_entry_salary_title']);
+$sal_query = mysqli_query($conn, "Select round(avg(total_yearly_compensation)) as avg
+		   	      From Salary
+			      Where title = \"$avg_entry_salary_title\"
+			      And years_of_experience = 0
+			      LIMIT 1;")
+or die (mysqli_error($conn));
+while ($row = mysqli_fetch_array($sal_query)) {
+   echo "<p>{$avg_entry_salary_title} employee makes on average $ {$row['avg']}</p>";
+}
+?>
+	
+	
 
 <!-- get user input title to find company with lowest salary -->
 <br>
@@ -102,35 +132,7 @@ while ($row = mysqli_fetch_array($sal_query)) {
 
 
 
-<!-- get user input title to find the average entry level salary -->
-<br>
-<h2>Find out the average entry level salary for the title:</h2>
-<!-- use user input title in query and output result -->
-<?php
-$title_query = mysqli_query($conn, "Select distinct title from Salary;") or die (mysqli_error($conn));
-echo "<form action='' method='POST'>";
-echo "<select name='avg_entry_salary_title' onchange='this.form.submit()'>";
-// set default select to Select
-echo "<option selected='selected' value='select'>Select</option>";
-while ($row = mysqli_fetch_array($title_query)) {
-   echo "<option value='" . $row['title'] . "'>" . $row['title'] . "</option>";
-}
-echo "</select>";
-echo "</form>";
-?>
-<!-- use user input title for query -->
-<?php
-$avg_entry_salary_title = htmlentities($_POST['avg_entry_salary_title']);
-$sal_query = mysqli_query($conn, "Select round(avg(total_yearly_compensation)) as avg
-		   	      From Salary
-			      Where title = \"$avg_entry_salary_title\"
-			      And years_of_experience = 0
-			      LIMIT 1;")
-or die (mysqli_error($conn));
-while ($row = mysqli_fetch_array($sal_query)) {
-   echo "<p>{$avg_entry_salary_title} employee makes on average $ {$row['avg']}</p>";
-}
-?>
+
 
 
 
