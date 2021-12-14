@@ -52,7 +52,7 @@ echo "</form>";
 ?>
 <?php
 $company_max_salary_title = htmlentities($_POST['company_max_salary_title']);
-$sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
+$max_sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
                                  From Salary
                                  Where title = \"$company_max_salary_title\"
                                  And total_yearly_compensation = 
@@ -60,7 +60,7 @@ $sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
 				 LIMIT 1;")
 				 or die (mysqli_error($conn));
 // Output row of query, should only be one row for this question
-while ($row = mysqli_fetch_array($sal_query)) {
+while ($row = mysqli_fetch_array($max_sal_query)) {
   echo "<p>{$row['company']} pays a {$company_max_salary_title} employee a total compensation of $ {$row['total_yearly_compensation']}</p>";
 }
 ?>
@@ -86,7 +86,7 @@ echo "</form>";
 ?>
 <?php
 $company_min_salary_title = htmlentities($_POST['company_min_salary_title']);
-$sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
+$min_sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
 	                          From Salary
 	                          Where title = \"$company_min_salary_title\"
 	                          And total_yearly_compensation =
@@ -94,7 +94,7 @@ $sal_query = mysqli_query($conn, "Select company, total_yearly_compensation
 				  LIMIT 1;")
 			       	  or die (mysqli_error($conn));
 // Output row of query, should only be one row for this question
-while ($row = mysqli_fetch_array($sal_query)) {
+while ($row = mysqli_fetch_array($min_sal_query)) {
    echo "<p>{$row['company']} pays a {$company_min_salary_title} employee a total compensation of $ {$row['total_yearly_compensation']}</p>";
 }
 ?>
@@ -126,7 +126,7 @@ $entry_lvl_query = mysqli_query($conn, "Select round(avg(total_yearly_compensati
 			      Where title = \"$avg_entry_salary_title\"
 			      And years_of_experience = 0
 			      LIMIT 1;")
-or die (mysqli_error($conn));
+			      or die (mysqli_error($conn));
 while ($row = mysqli_fetch_array($entry_lvl_query)) {
    echo "<p>An entry level {$avg_entry_salary_title} employee makes on average $ {$row['avg']}</p>";
 }
@@ -165,7 +165,7 @@ $ed_query = mysqli_query($conn, "SELECT X.*
 				WHERE title = \"$ed_title\") as X
 				ORDER BY X.percent desc;")
 				or die (mysqli_error($conn));
-echo "{$ed_title}";
+echo "Title: {$ed_title}";
 echo "<table> <tr> <th>Education</th> <th>Percent</th> </tr>";
 while($row = mysqli_fetch_array($ed_query)) {
    echo "<tr> <td>{$row['degree']}</td> <td>{$row['percent']}</td> </tr>";
@@ -199,7 +199,7 @@ $m_vs_nm_query = mysqli_query($conn, "select 'manager' as titlestr, round(avg(to
 	and company = \"$m_vs_nm_company\" UNION
 	select 'non-manager' as titlestr, round(avg(total_yearly_compensation)) as avg from Salary
 	where title not like '%manager%' and company = \"$m_vs_nm_company\";") or die (mysqli_error($conn));
-echo "{$m_vs_nm_company}";
+echo "Company: {$m_vs_nm_company}";
 echo "<table> <tr> <th>Position</th> <th>Avg Salary</th> </tr>";
 while($row = mysqli_fetch_array($m_vs_nm_query)) {
    echo "<tr> <td>{$row['titlestr']}</td> <td>{$row['avg']}</td> </tr>";
@@ -221,21 +221,27 @@ echo "</table>";
 <input type="submit">
 </form>
 <?php
-$exp_yrs = htmlentities($_POST["experience_yrs"]);
+$exp_yrs = htmlentities($_POST['experience_yrs']);
 $exp_query = mysqli_query($conn, "Select *, round(avg(total_yearly_compensation)) as Average
 				  From Salary 
 				  Where years_of_experience = \"$exp_yrs\"
 				  Group by company
 				  Order by Average DESC
-				  LIMIT 5;")
-				or die (mysqli_error($conn));
+				  LIMIT 5;") or die (mysqli_error($conn));
+echo "Years of Experience: {$exp_yrs}";
 echo "<table> <tr> <th>Company</th> <th>Average Salary</th> </tr>";
 while($row = mysqli_fetch_array($exp_query)) {
    echo "<tr> <td>{$row['company']}</td> <td>{$row['Average']}</td> </tr>";
 }
 echo "</table>";
 ?>
-	
+
+
+
+
+
+
+
 <br>
 <br>
 <hr size="3" width="90%" color="black">
