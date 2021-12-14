@@ -5,6 +5,7 @@
 <head>	
 <style>
 	td {text-align: center;}
+	tr:nth-child(even) {background-color: #D3D3D3}
 </style>
 </head>
 	
