@@ -410,6 +410,8 @@ City:
 <?php
 $city_query = mysqli_query($conn, "Select distinct location from Location;") or die (mysqli_error($conn));
 echo "<select name='city'>";
+// set default select to Select
+echo "<option selected='selected' value='select'>Select</option>";
 while ($row = mysqli_fetch_array($city_query)) {
    echo "<option value='" . $row['location'] . "'>" . $row['location'] . "</option>";
 }
@@ -424,6 +426,7 @@ Years at Company: <input type="number" name="years_at_company"><br>
 Stock Grant: <input type="number" name="stock_grant_value"><br>
 Bonus: <input type="number" name="bonus"><br>
 Highest Level of Education: <select name="education" id="education">
+	<option selected='selected' value='select'>Select</option>
 	<option value="high_school">High School</option>
 	<option value="bachelors">Bachelors</option>
 	<option value="masters">Masters</option>
