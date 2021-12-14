@@ -6,7 +6,7 @@
 <style>
 	td {text-align: center;}
 	tr:nth-child(even) {background-color: #D3D3D3}
-	table {padding: 10px; border: 1px solid black; border-collapse: collapse;}
+	table, th, td {padding: 10px; border: 1px solid black; border-collapse: collapse;}
 </style>
 </head>
 	
